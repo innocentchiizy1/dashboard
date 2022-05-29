@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   deliverOrder,
   getOrderDetails,
+  paidOrder
 } from "../../Redux/Actions/OrderActions";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
@@ -21,12 +22,20 @@ const OrderDetailmain = (props) => {
   const orderDeliver = useSelector((state) => state.orderDeliver);
   const { loading: loadingDelivered, success: successDelivered } = orderDeliver;
 
+  const orderPaid = useSelector((state) => state.orderPaid);
+  const { loading: loadingPaid, success: successPaid } = orderPaid;
+
+
   useEffect(() => {
     dispatch(getOrderDetails(orderId));
-  }, [dispatch, orderId, successDelivered]);
+  }, [dispatch, orderId, successDelivered, successPaid]);
 
   const deliverHandler = () => {
     dispatch(deliverOrder(order));
+  };
+
+  const paidHandler = () => {
+    dispatch(paidOrder(order));
   };
 
   return (
@@ -84,7 +93,7 @@ const OrderDetailmain = (props) => {
                   <OrderDetailProducts order={order} loading={loading} />
                 </div>
               </div>
-              {/* Payment Info */}
+              {/* Delivery Info */}
               <div className="col-lg-3">
                 <div className="box shadow-sm bg-light">
                   {order.isDelivered ? (
@@ -105,6 +114,28 @@ const OrderDetailmain = (props) => {
                   )}
                 </div>
               </div>
+   {/* Payment Info */}
+  
+                <div className="box shadow-sm bg-light">
+                  {order.isPaid ? (
+                    <button className="btn btn-success col-12">
+                      PAID AT ({" "}
+                      {moment(order.isPaidAt).format("MMM Do YY")})
+                    </button>
+                  ) : (
+                    <>
+                      {loadingPaid && <Loading />}
+                      <button
+                        onClick={paidHandler}
+                        className="btn btn-dark col-12"
+                      >
+                        MARK AS PAID
+                      </button>
+                    </>
+                  )}
+             
+              </div>
+
             </div>
           </div>
         </div>
