@@ -15,6 +15,7 @@ const OrderDetailInfo = (props) => {
               {order.user.name} <br />
               <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
             </p>
+            <p>{order.shippingAddress.postalCode}</p>
           </div>
         </article>
       </div>
@@ -27,7 +28,7 @@ const OrderDetailInfo = (props) => {
             <h6 className="mb-1">Order info</h6>
             <p className="mb-1">
               Shipping: {order.shippingAddress.country} <br /> Pay method:{" "}
-              {order.paymentMethod}
+              {order.paymentMethod}/Interac
             </p>
           </div>
         </article>
@@ -43,7 +44,7 @@ const OrderDetailInfo = (props) => {
               Address: {order.shippingAddress.city}
               <br />
               {order.shippingAddress.address}
-              <br /> {order.shippingAddress.postalCode}
+              <br /> 
             </p>
           </div>
         </article>
