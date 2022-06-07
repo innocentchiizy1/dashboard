@@ -18,6 +18,7 @@ const AddProductMain = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
+  const [color, setColor] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
 
@@ -35,12 +36,13 @@ const AddProductMain = () => {
       setCountInStock(0);
       setImage("");
       setPrice(0);
+      setColor("");
     }
   }, [product, dispatch]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(createProduct(name, price, description, image, countInStock));
+    dispatch(createProduct(name, price, description, image, countInStock, color));
   };
 
   return (
@@ -94,6 +96,32 @@ const AddProductMain = () => {
                       onChange={(e) => setPrice(e.target.value)}
                     />
                   </div>
+
+
+
+
+
+                  <div className="mb-4">
+                    <label htmlFor="product_color" className="form-label">
+                      Color
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Type here"
+                      className="form-control"
+                      id="product_color"
+                      required
+                      value={color}
+                      onChange={(e) => setColor(e.target.value)}
+                    />
+                  </div>
+
+
+
+
+
+
+
                   <div className="mb-4">
                     <label htmlFor="product_price" className="form-label">
                       Count In Stock
