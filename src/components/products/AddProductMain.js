@@ -7,6 +7,7 @@ import { createProduct } from "./../../Redux/Actions/ProductActions";
 import Toast from "../LoadingError/Toast";
 import Message from "../LoadingError/Error";
 import Loading from "../LoadingError/Loading";
+import Select from "react-select";
 
 const ToastObjects = {
   pauseOnFocusLoss: false,
@@ -18,7 +19,8 @@ const AddProductMain = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
-  const [color, setColor] = useState("");
+  const [color, setColor] = useState([]);
+
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
 
@@ -36,14 +38,26 @@ const AddProductMain = () => {
       setCountInStock(0);
       setImage("");
       setPrice(0);
-      setColor("");
+      setColor([]);
     }
   }, [product, dispatch]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(createProduct(name, price, description, image, countInStock, color));
+    dispatch(
+      createProduct(name, price, description, image, countInStock, color)
+    );
   };
+
+  const options = [
+    { label: "Color", value: "color", isDisabled : true },
+    { label: "1T", value: "1T" },
+    { label: "1B", value: "1B" },
+    { label: "T30", value: "T27" },
+    { label: "GA3", value: "30" },
+    { label: "27", value: "27" },
+
+  ];
 
   return (
     <>
@@ -97,15 +111,18 @@ const AddProductMain = () => {
                     />
                   </div>
 
-
-
-
-
                   <div className="mb-4">
                     <label htmlFor="product_color" className="form-label">
                       Color
                     </label>
-                    <input
+
+                    <Select closeMenuOnSelect={false}
+                      options={options}
+                      isMulti
+                      onChange={(e) => setColor(e)}
+                    />
+
+                    {/* <input
                       type="text"
                       placeholder="Type here"
                       className="form-control"
@@ -113,14 +130,8 @@ const AddProductMain = () => {
                       required
                       value={color}
                       onChange={(e) => setColor(e.target.value)}
-                    />
+                    /> */}
                   </div>
-
-
-
-
-
-
 
                   <div className="mb-4">
                     <label htmlFor="product_price" className="form-label">

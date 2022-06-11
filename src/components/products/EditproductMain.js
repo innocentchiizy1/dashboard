@@ -10,6 +10,7 @@ import { PRODUCT_UPDATE_RESET } from "../../Redux/Constants/ProductConstants";
 import { toast } from "react-toastify";
 import Message from "../LoadingError/Error";
 import Loading from "../LoadingError/Loading";
+import Select from "react-select";
 
 const ToastObjects = {
   pauseOnFocusLoss: false,
@@ -26,8 +27,7 @@ const EditProductMain = (props) => {
   const [image, setImage] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
-  const [color, setColor] = useState("");
-
+  const [color, setColor] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -55,12 +55,12 @@ const EditProductMain = (props) => {
         setImage(product.image);
         setPrice(product.price);
         setColor(product.color);
-
       }
     }
   }, [product, dispatch, productId, successUpdate]);
 
   const submitHandler = (e) => {
+    console.log(color);
     e.preventDefault();
     dispatch(
       updateProduct({
@@ -70,10 +70,27 @@ const EditProductMain = (props) => {
         description,
         image,
         countInStock,
-        color
+        color,
       })
     );
   };
+
+  useEffect(() => {
+    if (color.length === 0) {
+      return;
+    }
+    console.log("running");
+    console.log(color)
+  }, [color]);
+  const options = [
+    { label: "Color", value: "color", isDisabled : true },
+    { label: "1T", value: "1T" },
+    { label: "1B", value: "1B" },
+    { label: "T30", value: "T27" },
+    { label: "GA3", value: "30" },
+    { label: "27", value: "27" },
+
+  ];
 
   return (
     <>
@@ -135,12 +152,19 @@ const EditProductMain = (props) => {
                         />
                       </div>
 
-
                       <div className="mb-4">
-                    <label htmlFor="product_color" className="form-label">
-                      Color
-                    </label>
-                    <input
+                        <label htmlFor="product_color" className="form-label">
+                          Color
+                        </label>
+
+                        <Select
+                          closeMenuOnSelect={false}
+                          options={options}
+                          isMulti
+                          onChange={(e) => setColor(e)}
+                        />
+
+                        {/* <input
                       type="text"
                       placeholder="Type here"
                       className="form-control"
@@ -148,9 +172,8 @@ const EditProductMain = (props) => {
                       required
                       value={color}
                       onChange={(e) => setColor(e.target.value)}
-                    />
-                  </div>
-
+                    /> */}
+                      </div>
 
                       <div className="mb-4">
                         <label htmlFor="product_price" className="form-label">
