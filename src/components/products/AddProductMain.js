@@ -57,7 +57,7 @@ const AddProductMain = () => {
     { label: "GA3", value: "GA3" },
     { label: "27", value: "27" },
     { label: "T27", value: "T27" },
-
+    { label: "30", value: "30" },
 
   ];
 

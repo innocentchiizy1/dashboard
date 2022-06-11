@@ -84,11 +84,13 @@ const EditProductMain = (props) => {
   }, [color]);
   const options = [
     { label: "Color", value: "color", isDisabled : true },
-    { label: "1T", value: "A1T" },
-    { label: "1B", value: "A1B" },
-    { label: "T30", value: "AT27" },
-    { label: "GA3", value: "A30" },
-    { label: "27", value: "A27" },
+    { label: "1T", value: "1T" },
+    { label: "1B", value: "1B" },
+    { label: "T30", value: "T30" },
+    { label: "GA3", value: "GA3" },
+    { label: "27", value: "27" },
+    { label: "T27", value: "T27" },
+    { label: "30", value: "30" },
 
   ];
 
