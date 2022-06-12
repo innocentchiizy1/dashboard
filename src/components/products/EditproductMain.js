@@ -79,8 +79,6 @@ const EditProductMain = (props) => {
     if (color.length === 0) {
       return;
     }
-    console.log("running");
-    console.log(color)
   }, [color]);
   const options = [
     { label: "Color", value: "color", isDisabled : true },

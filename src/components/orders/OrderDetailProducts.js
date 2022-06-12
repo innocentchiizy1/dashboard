@@ -42,6 +42,7 @@ const OrderDetailProducts = (props) => {
                 </div>
                 <div className="info">{item.name}</div>
               </Link>
+              <div>{item.color}</div>
             </td>
             <td>CAD {item.price} </td>
             <td>{item.qty} </td>
