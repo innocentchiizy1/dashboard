@@ -51,7 +51,7 @@ const AddProductMain = () => {
 
   const options = [
     { label: "Color", value: "color", isDisabled : true },
-    { label: "1T", value: "1T" },
+    { label: "1T", value: "A1T" },
     { label: "1B", value: "1B" },
     { label: "T30", value: "T30" },
     { label: "GA3", value: "GA3" },
